@@ -14,8 +14,8 @@ from GD import gradientDescent
 
 ################PLACEHOLDER1 #start##########################
 # test multiple learning rates and report their convergence curves. 
-ALPHA = 0.1
-MAX_ITER = 500
+ALPHA = 1.0
+MAX_ITER = 200
 ################PLACEHOLDER1 #end##########################
 
 #% step-1: load data and divide it into two subsets, used for training and testing
