@@ -2,7 +2,8 @@ from download_data import download_data
 import numpy as np
 import matplotlib.pyplot as plt
 from GD import gradientDescent
-from dataNormalization import rescaleMatrix
+# NOTE: removed rescaleMatrix() import since we're using our own normalization
+#from dataNormalization import rescaleMatrix
  
 
 #NOTICE: Fill in the codes between "%PLACEHOLDER#start" and "PLACEHOLDER#end"
@@ -22,7 +23,24 @@ sat = download_data('sat.csv', [1, 2, 4]).values # three columns: MATH SAT, VERB
 
 ################PLACEHOLDER2 #start##########################
 # Normalize data
-sat = rescaleMatrix(sat) # please replace this code with your own codes
+#sat = rescaleMatrix(sat) # please replace this code with your own codes
+
+# use my own normalization formula on sat (all 3 columns)
+# instead of rescaleMatrix()
+
+# SIMPLE OPTION: min-max normalization to [0,1]
+
+col_min = sat.min(axis=0)
+col_max = sat.max(axis=0)
+sat = (sat - col_min) / (col_max - col_min + 1e-8)
+
+# ALTERNATIVE OPTION: mean normalization to [-1,1]
+#col_mean = sat.mean(axis=0)
+#col_min = sat.min(axis=0)
+#col_max = sat.max(axis=0)
+#sat = (sat - col_mean) / (col_max - col_min + 1e-8)
+# subtracts each column's mean, scales by that column's range
+# 1e-8 avoids divide-by-zero if a column is constant
 ################PLACEHOLDER2 #end##########################
 
  
